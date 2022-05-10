@@ -1,7 +1,7 @@
-create sequence state_id_seq
+create sequence stage_id_seq
     as integer;
 
-alter sequence state_id_seq owner to postgres;
+alter sequence stage_id_seq owner to postgres;
 
 create table school_class
 (
@@ -148,8 +148,8 @@ create unique index game_id_uindex
 
 create table stage
 (
-    id      integer default nextval('state_id_seq'::regclass) not null
-        constraint state_pk
+    id      integer default nextval('stage_id_seq'::regclass) not null
+        constraint stage_pk
             primary key,
     game_id integer                                           not null
         constraint game_id_fk
@@ -161,9 +161,9 @@ comment on table stage is 'A game stage';
 alter table stage
     owner to postgres;
 
-alter sequence state_id_seq owned by stage.id;
+alter sequence stage_id_seq owned by stage.id;
 
-create unique index state_id_uindex
+create unique index stage_id_uindex
     on stage (id);
 
 create table stage_question
