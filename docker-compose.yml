@@ -1,8 +1,5 @@
 version: "3.9"
 
-volumes:
-  mysql-data:
-
 services:
 ######## mysql dev #######
   mysql:
@@ -10,14 +7,8 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: "quizformacao"
-      MYSQL_USER: "quizformacao"
-      MYSQL_PASSWORD: "quizformacao!@A2022"
-      MYSQL_ROOT_PASSWORD: "quizformacao!@A2022"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    command: sh -c "
-      echo 'CREATE DATABASE IF NOT EXISTS quizformacao; CREATE DATABASE IF NOT EXISTS quizformacao_test;' > /docker-entrypoint-initdb.d/init.sql;
-      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-      "
+      MYSQL_USER: "qf"
+      MYSQL_PASSWORD: "qf123"
+      MYSQL_ROOT_PASSWORD: "qf123"
     ports:
-      - "${DATABASE_PORT}:3306"
+      - "3306:3306"
